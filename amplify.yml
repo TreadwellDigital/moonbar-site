@@ -1,0 +1,49 @@
+# AWS Amplify build specification — Moonbar monorepo (apps/web = Next.js 14 SSR)
+#
+# Amplify Console setup:
+#   Framework:   Next.js - SSR
+#   App root:    / (repo root — commands run from here so npm workspaces resolve correctly)
+#
+# Environment variables to set in Amplify Console before first deploy:
+#   NEXT_PUBLIC_REGION                 AU | UK | NZ
+#   NEXT_PUBLIC_SANITY_PROJECT_ID      from sanity.io project settings
+#   NEXT_PUBLIC_SANITY_DATASET         production
+#   SANITY_API_READ_TOKEN              viewer token from sanity.io → API → Tokens
+#   SANITY_REVALIDATE_SECRET           random string matching your Sanity webhook
+#   ALLSTAR_READERS_ENDPOINT           https://api.allstarpsychics.co.uk/readers
+#   ALLSTAR_API_KEY                    supplied by Allstar Psychics Ltd
+#   NEXT_PUBLIC_GA4_ID                 (optional) Google Analytics measurement ID
+#   NEXT_PUBLIC_SMS_KEYWORD            (leave unset until confirmed — page stays dark)
+#   NEXT_PUBLIC_SMS_NUMBER             (leave unset until confirmed — page stays dark)
+#   NEXT_PUBLIC_SMS_WALLET_LINK        (optional — defaults to https://wallet.moonbar.com.au/)
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Pin to Node 20 LTS — Next.js 14 requires 18.17+
+        - nvm use 20
+        - node -v
+        - npm -v
+        # Install all workspace dependencies from the monorepo root
+        - npm ci
+    build:
+      commands:
+        # Root package.json script: "build": "cd apps/web && next build"
+        # next-sitemap postbuild runs automatically after next build
+        - npm run build
+  artifacts:
+    # Amplify's Next.js SSR mode reads the .next directory from here.
+    # It also picks up apps/web/public/ automatically for static assets.
+    baseDirectory: apps/web/.next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      # Root node_modules (npm workspaces)
+      - node_modules/**/*
+      # Per-app node_modules (hoisted packages that live in the app)
+      - apps/web/node_modules/**/*
+      # Next.js incremental build cache — dramatically speeds up rebuilds
+      - apps/web/.next/cache/**/*

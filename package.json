@@ -1,0 +1,13 @@
+{
+  "name": "moonbar",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "cd apps/web && next dev",
+    "build": "cd apps/web && next build",
+    "studio": "cd apps/studio && sanity dev"
+  }
+}
