@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   const slugs = await sanityClient
     .fetch(SERVICE_PAGE_SLUGS_QUERY, { region: rc.region })
     .catch(() => [] as Array<{ slug: string }>)
-  return slugs.map(({ slug }) => ({ slug }))
+  return slugs.map(({ slug }: { slug: string }) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
