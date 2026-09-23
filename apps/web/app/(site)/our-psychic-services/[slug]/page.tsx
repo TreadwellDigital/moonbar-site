@@ -14,6 +14,11 @@ interface Props {
 }
 
 export async function generateStaticParams() {
+  // Skip static generation when Sanity isn't configured (e.g. preview builds).
+  // The route still works at request time via SSR; unconfigured requests 404.
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? ''
+  if (!projectId || projectId === 'placeholder' || projectId === 'unconfigured') return []
+
   const rc = getRegionConfig()
   const slugs = await sanityClient
     .fetch(SERVICE_PAGE_SLUGS_QUERY, { region: rc.region })
