@@ -15,11 +15,11 @@ export function StickyCallBar() {
         @media (max-width: 1120px) {
           .sticky-call-bar { display: none !important; }
         }
-        /* Pink left marker on live-chat column only */
-        .scb-livechat {
+        /* Pink left marker on SMS column */
+        .scb-sms {
           position: relative;
         }
-        .scb-livechat::before {
+        .scb-sms::before {
           content: '';
           position: absolute;
           left: 0;
@@ -94,38 +94,24 @@ export function StickyCallBar() {
             </p>
           </div>
 
-          {/* ── Live Chat + SMS (28%) ───────────────────── */}
+          {/* ── SMS Readings (28%) ──────────────────────── */}
           <div
-            className="scb-livechat"
-            style={{ width: '28%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', padding: '0.5rem 1rem 0.5rem 28px', gap: '0.5rem', boxSizing: 'border-box' }}
+            className="scb-sms"
+            style={{ width: '28%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0.5rem 1rem 0.5rem 28px', boxSizing: 'border-box' }}
           >
-            {/* Live Chat row */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '100%' }}>
-              <p style={{ fontFamily: '"Overpass", sans-serif', fontWeight: 900, fontSize: '0.938rem', color: '#fff', margin: 0, lineHeight: 1.2, whiteSpace: 'nowrap' }}>
-                LIVE CHAT
-              </p>
-              <a
-                href={rc.chatUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-green"
-                style={{ minWidth: 'auto', fontSize: '0.75rem', padding: '0.3rem 0.75rem', whiteSpace: 'nowrap' }}
-              >
-                Start Live Chat &gt;
-              </a>
-            </div>
-
-            {/* SMS Readings row */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '100%' }}>
-              <p style={{ fontFamily: '"Overpass", sans-serif', fontWeight: 900, fontSize: '0.938rem', color: '#fff', margin: 0, lineHeight: 1.2, whiteSpace: 'nowrap' }}>
-                SMS READINGS
-              </p>
+            <p style={{ fontFamily: '"Overpass", sans-serif', fontWeight: 900, fontSize: '1rem', color: '#fff', margin: '0 0 0.2rem', lineHeight: 1.2 }}>
+              Psychic SMS Readings
+            </p>
+            <p style={{ fontFamily: '"Overpass", sans-serif', fontWeight: 400, fontSize: '0.75rem', color: 'rgba(255,255,255,0.85)', margin: '0 0 0.5rem', lineHeight: 1.4 }}>
+              Buy credits securely through the Moonbar Wallet, then chat privately with a Psychic by text — with no premium-rate number.
+            </p>
+            <div>
               <a
                 href="/psychic-sms-readings"
-                className="btn-primary"
-                style={{ minWidth: 'auto', fontSize: '0.75rem', padding: '0.3rem 0.75rem', background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.5)', whiteSpace: 'nowrap' }}
+                className="btn-green"
+                style={{ minWidth: 'auto', fontSize: '0.75rem', padding: '0.3rem 0.75rem', whiteSpace: 'nowrap', display: 'inline-block' }}
               >
-                Find Out More &gt;
+                Discover SMS Readings &gt;
               </a>
             </div>
           </div>

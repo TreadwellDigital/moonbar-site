@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getRegionConfig } from '@/lib/region.config'
-import { ReaderFeed } from '@/components/readers/ReaderFeed'
 import { IntroSection } from '@/components/home/IntroSection'
 import { MobileCallBlock } from '@/components/phone/MobileCallBlock'
 import { JsonLd, buildOrganizationSchema, buildWebSiteSchema, buildLocalBusinessSchema, buildFaqSchema } from '@/components/seo/JsonLd'
@@ -109,7 +108,8 @@ export default function HomePage() {
             Moonbar&apos;s Available Psychic Readers
           </h2>
         </div>
-        <ReaderFeed />
+        <div id="psychic-cards"></div>
+        <div id="psychic-feed"></div>
       </section>
 
       {/* ── 6. How to make a Psychic call ───────────────────────────────── */}
@@ -130,18 +130,18 @@ export default function HomePage() {
             {[
               {
                 img: 'https://moonbar.com.au/images/icons/crystal.png',
-                title: 'Choose a Psychic Reader',
-                body: 'Take a moment to browse through our available Psychic Readers. Their skill set ranges from Tarot readings, Love and Relationship readings, to readings using instruments such as the Crystal Ball. Once you have selected your chosen Psychic Reader, make a note of their PIN number as you will need to enter this to connect to that Reader.',
+                title: 'Choose a Reader',
+                body: 'Browse our available Psychic Readers and make a note of your chosen reader\'s four-digit ID.',
               },
               {
                 img: 'https://moonbar.com.au/images/icons/smartphone.png',
-                title: 'Connecting',
-                body: "You can call Moonbar Psychics via Credit and Debit card, by calling the number displayed on the website. Payments are taken in our secure over the phone system. It's really simple to use and the prompts on the phone call will guide you through the process. You don't always have to pre-select one of the Psychic Readers, you do also have the option to let fate decide and connect to the next available Psychic Reader.",
+                title: 'Connect',
+                body: 'Call Moonbar and follow the recorded prompts. Press 1 and enter your chosen reader\'s ID, or press 2 to speak with the next available reader.',
               },
               {
                 img: 'https://moonbar.com.au/images/icons/question.png',
-                title: 'During the call',
-                body: "Once you're connected, we always advise having a pen and paper at the ready to take a note of the important messages that you are about to hear. Most importantly, enjoy your Psychic Reading! Remember, all of our Psychic Readers love receiving feedback, so please do go onto their profile and leave a review.",
+                title: 'Enjoy your reading',
+                body: 'Tell your reader what you would like guidance on, or ask for a general reading. Keep a pen and paper nearby for anything you want to remember.',
               },
             ].map(({ img, title, body }) => (
               <div key={title} className="text-center" style={{ maxWidth: '17.5rem', margin: '0 auto' }}>
@@ -240,14 +240,11 @@ export default function HomePage() {
           </h2>
           <div style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15 }}>
             {[
-              "- Having a Psychic Reading over the phone can often seem a little intimidating. Moonbar's Psychic readers are calming, friendly and will reassure you when you first connect. -",
-              "- We understand that you may wish to speak with a Psychic at any point throughout the day, that's why we have Psychics live on Moonbar 24 hours a day, 365 days a year. -",
-              "- If you are calling on our standard price number, we offer a money-back guarantee, providing you with a full refund for your call in the unlikely event that you are not satisfied with your call -",
-              "- Our Psychic Phone readings are priced extremely competitively and give you fantastic value for money versus other Psychic services -",
-              "- All of our Psychics are vetted by our UK based Psychic Bureau and are thoroughly tested before being able to perform Psychic Readings for Moonbar Psychics. -",
-              "- We offer some incredible special offers throughout the year. Keep your eyes peeled! -",
-              "- The Moonbar mobile app makes speaking to a Psychic reader even easier! Download the Android app now! -",
-              "- Moonbar Psychics has quickly become one of the biggest providers of Psychic readings in Australia and as we continue to grow, we will be releasing new features to make your Moonbar experience even better! -",
+              "- Our friendly and experienced Psychic Readers will help you feel comfortable, even if this is your first reading. -",
+              "- Moonbar Psychic Readers are available 24 hours a day, 7 days a week, giving you the flexibility to call whenever it suits you. -",
+              "- Every Moonbar reader is rigorously interviewed and tested by the UK-based team at Allstar Psychics before being approved to take readings. -",
+              "- Browse the available readers and choose the Psychic who feels right for you, or connect with the next available reader. -",
+              "- Our fixed-price phone packages provide clear pricing, with special offers available throughout the year. -",
             ].map((line, i) => (
               <p key={i} style={{ marginTop: i === 0 ? 0 : '0.75rem' }}>{line}</p>
             ))}
@@ -261,9 +258,9 @@ export default function HomePage() {
             What to Expect When Calling?
           </h2>
           <div style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15 }}>
-            <p style={{ marginTop: 0 }}>It&apos;s just normal that when you first connect over the phone to your chosen Psychic reader that they will ask you to confirm your name, date of birth and that you are or have the bill payers permission to make your Psychic call. These are regulatory requirements and once you have confirmed these details, the Psychic, Clairvoyant, Medium or Tarot reader that you have connected to will then ask you to advise the reason of your call.</p>
-            <p style={{ marginTop: '0.75rem' }}>If you would like your chosen Psychic Reader to look at a specific area; it&apos;s a good idea to tell the Psychic at the start of the reading so they can focus on the subject in depth. You could also choose to have a &apos;general&apos; reading which will give you overall insight on your life and highlight any areas that may be coming up. Once you have chosen your reader, make a note of their personal 4 digit pin number.</p>
-            <p style={{ marginTop: '0.75rem' }}>Whether you choose to pay by credit or debit card, or via your phonebill &ndash; simply follow the prompt instructions on the phone and you will be put through to your reader. If you don&apos;t mind which Psychic you speak to and decide to leave it to fate, then you will automatically be put through to the next available Psychic!</p>
+            <p style={{ marginTop: 0 }}>When you call Moonbar, follow the recorded prompts to complete your secure card payment. You may be asked to confirm your name, date of birth and that you are aged over 18.</p>
+            <p style={{ marginTop: '0.75rem' }}>Press 1 and enter the four-digit ID of your chosen Psychic Reader. If you would prefer to speak with the next available reader, press 2.</p>
+            <p style={{ marginTop: '0.75rem' }}>Once connected, tell your reader if there is a particular area of your life you would like guidance on. You can also request a general reading for broader insight.</p>
           </div>
           <div style={{ marginTop: '1.5rem' }}>
             <Link href="/psychic-phone-readings" className="btn-primary">Call Moonbar&apos;s Psychics Now</Link>
@@ -292,9 +289,9 @@ export default function HomePage() {
           <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center" style={{ flexWrap: 'nowrap' }}>
             <div className="text-center md:text-left">
               <h2 className="font-display font-black text-white" style={{ fontSize: '1.875rem' }}>
-                NEW! Live Psychic Chat!
+                Live Psychic Chat!
               </h2>
-              <p className="text-white/90 mt-1">Chat to our readers in your browser</p>
+              <p className="text-white/90 mt-1">Chat privately with one of our Psychic Readers in your browser.</p>
             </div>
             <a href={rc.chatUrl} target="_blank" rel="noopener noreferrer" className="btn-green whitespace-nowrap">
               Start Live Chat &gt;

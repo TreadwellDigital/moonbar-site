@@ -48,6 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;0,900;1,500;1,900&family=Overpass:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* Allstar reader feed embed */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script type="module" src="https://feeds.allstar.ms/embed.js" data-psychic-feed="" data-site="mb-au" />
       </head>
       <body>
         <SiteSettings>

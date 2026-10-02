@@ -130,18 +130,7 @@ export function Footer() {
         {/* ── Col 4: Credits ──────────────────────────────────────────── */}
         <div>
           <p style={creditStyle}>
-            Website by{' '}
-            <a
-              href="https://www.allstar.ms/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-credit-link"
-            >
-              Allstar Media Services
-            </a>
-          </p>
-          <p style={creditStyle}>
-            Psychic Readings 🚀 by{' '}
+            Psychic Readings by{' '}
             <a
               href="https://www.allstarpsychics.co.uk/"
               target="_blank"
