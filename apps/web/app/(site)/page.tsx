@@ -108,7 +108,6 @@ export default function HomePage() {
             Moonbar&apos;s Available Psychic Readers
           </h2>
         </div>
-        <div id="psychic-cards"></div>
         <div id="psychic-feed"></div>
       </section>
 
@@ -162,29 +161,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 7. App banner ───────────────────────────────────────────────── */}
-      <section style={{ background: '#F2F2F2', padding: '3.5rem 1rem' }} className="text-center">
-        <div className="container-wide">
-          <h2 className="font-display font-black" style={{ fontSize: '1.875rem', color: '#626262' }}>
-            Available to Download on
-          </h2>
-          <a
-            href="https://play.google.com/store/apps/details?id=ms.allstar.android.moonbar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-6"
-            aria-label="Android App on Google Play"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://moonbar.com.au/templates/moonbar/images/google.png"
-              alt="Android App on Google Play"
-              style={{ width: '17.375rem', height: '5.188rem', objectFit: 'contain' }}
-            />
-          </a>
-        </div>
-      </section>
-
       {/* ── 8. Services information ─────────────────────────────────────── */}
       <section className="bg-white" style={{ paddingTop: '3.5rem', paddingBottom: '1rem' }}>
         <div className="container-narrow text-center">
@@ -195,15 +171,27 @@ export default function HomePage() {
           <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: 0 }}>
             Speaking to a Psychic over the phone is one of the easiest and quickest ways to gain guidance. We have many Psychics live 24/7, located across the world that are awaiting your call.
           </p>
-          <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: '0.75rem' }}>
-            You have 2 payment options for your Psychic call - either pay by Phonebill or by Card. Psychic Readings by Phonebill are charged at $2.75 per minute - additional mobile charges may apply. Or select to call and pay by Card for fixed prices and options - look out for special discounts and offers when paying by card. Call our Psychics today!
-          </p>
+          {rc.region === 'AU' ? (
+            <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: '0.75rem' }}>
+              All payments are made securely by credit or debit card. Choose from our two fixed-price packages — look out for special discounts and offers throughout the year. Call our Psychics today!
+            </p>
+          ) : rc.region === 'UK' ? (
+            <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: '0.75rem' }}>
+              You have 2 payment options: call our standard rate number at {rc.phoneStandardOffer.toLowerCase()}, or call and pay by card for fixed-price packages. Look out for special discounts and offers when paying by card. Call our Psychics today!
+            </p>
+          ) : (
+            <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: '0.75rem' }}>
+              You have 2 payment options: pay by Phonebill ({rc.phonePhonebillOffer ?? '$2.75 per minute'}) or pay by Card for fixed prices and packages. Look out for special discounts and offers when paying by card. Call our Psychics today!
+            </p>
+          )}
           <div style={{ marginTop: '1.5rem' }}>
             <Link href="/psychic-phone-readings" className="btn-primary">Call a Psychic Now</Link>
           </div>
 
+          {rc.hasSms && (<>
           <h2 className="font-display font-black" style={{ fontSize: '1.875rem', color: '#626262', margin: '2.5rem 0 1rem' }}>
-            Psychic SMS Readings
+            Psychic SMS Readings{' '}
+            <span style={{ fontSize: '0.688rem', background: '#f068b5', color: '#fff', padding: '0.2rem 0.45rem', borderRadius: '3px', verticalAlign: 'middle', fontFamily: '"Overpass", sans-serif', fontWeight: 900, letterSpacing: '0.06em', lineHeight: 1 }}>NEW</span>
           </h2>
           <p style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15, marginTop: 0 }}>
             Chat privately with one of Moonbar&apos;s gifted Psychic Readers by text message. Buy credits securely through the Moonbar Wallet using PayPal or card, then use your Wallet balance for your SMS reading &mdash; with no premium rate number.
@@ -214,6 +202,7 @@ export default function HomePage() {
           <div style={{ marginTop: '1.5rem' }}>
             <Link href="/psychic-sms-readings" className="btn-primary">Discover SMS Readings</Link>
           </div>
+          </>)}
 
           <h2 className="font-display font-black" style={{ fontSize: '1.875rem', color: '#626262', margin: '2.5rem 0 1rem' }}>
             Psychic Live Chat Readings
@@ -240,20 +229,15 @@ export default function HomePage() {
           </h2>
           <div style={{ fontSize: '0.938rem', color: '#626262', lineHeight: 1.15 }}>
             {[
-              "- Our friendly and experienced Psychic Readers will help you feel comfortable, even if this is your first reading. -",
-              "- Moonbar Psychic Readers are available 24 hours a day, 7 days a week, giving you the flexibility to call whenever it suits you. -",
-              "- Every Moonbar reader is rigorously interviewed and tested by the UK-based team at Allstar Psychics before being approved to take readings. -",
-              "- Browse the available readers and choose the Psychic who feels right for you, or connect with the next available reader. -",
-              "- Our fixed-price phone packages provide clear pricing, with special offers available throughout the year. -",
+              "Our friendly and experienced Psychic Readers will help you feel comfortable, even if this is your first reading.",
+              "Moonbar Psychic Readers are available 24 hours a day, 7 days a week, giving you the flexibility to call whenever it suits you.",
+              "Every Moonbar reader is rigorously interviewed and tested by the UK-based team at Allstar Psychics before being approved to take readings.",
+              "Browse the available readers and choose the Psychic who feels right for you, or connect with the next available reader.",
+              "Our fixed-price phone packages provide clear pricing, with special offers available throughout the year.",
             ].map((line, i) => (
               <p key={i} style={{ marginTop: i === 0 ? 0 : '0.75rem' }}>{line}</p>
             ))}
           </div>
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link href="/psychic-phone-readings" className="btn-primary">Call Moonbar&apos;s Psychics Now</Link>
-          </div>
-
-          {/* What to expect — 2.5rem below the CTA above */}
           <h2 className="font-display font-black" style={{ fontSize: '1.875rem', color: '#626262', margin: '2.5rem 0 1rem' }}>
             What to Expect When Calling?
           </h2>

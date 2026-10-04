@@ -17,10 +17,11 @@ export interface RegionConfig {
   phoneSpecialOffer: string
   phoneStandard: string
   phoneStandardOffer: string
-  // Optional extras — UK has SMS, NZ has phonebill
-  phoneSms?: string
-  phoneSmsKeyword?: string
-  phonePhonebill?: string
+  // Optional extras
+  hasSms: boolean           // whether to show SMS readings section/page
+  phoneSms?: string         // UK: PSMS short code
+  phoneSmsKeyword?: string  // UK: PSMS keyword
+  phonePhonebill?: string   // NZ: premium-rate phonebill number
   phonePhonebillOffer?: string
   termsShort: string
   termsLong: string
@@ -46,6 +47,7 @@ export const REGION_CONFIG: Record<Region, RegionConfig> = {
     termsShort:          'Local rate call costs apply. Mobiles may be more. Over 18\'s. Entertainment Only. Must have bill payers permission. Calls recorded.',
     termsLong:           'Local rate call costs apply - Mobiles may be more. Over 18\'s. Entertainment Only. Must have bill payers permission. Calls recorded. You will receive promo msgs, to opt out, send STOP to +61428808307.',
     sp:                  'SP: Allstar Psychics Ltd. Helpdesk: info@allstarpsychics.co.uk',
+    hasSms:              true,
     optOut:              'To opt out send STOP to +61428808307',
     hreflangs: [
       { hreflang: 'en-AU',    href: 'https://moonbar.com.au' },
@@ -74,6 +76,7 @@ export const REGION_CONFIG: Record<Region, RegionConfig> = {
     termsShort:          '18+. Entertainment only. Bill payer\'s permission required. Calls recorded.',
     termsLong:           '0905 766 0004: 75p/min + network access charge. 0203 472 1015: 20 mins £12.99, 40 mins £24.99, 60 mins £34.99. 18+. Entertainment only. Bill payer\'s permission required. Free promo msgs may be sent.',
     sp:                  'SP: Allstar Psychics Ltd. Helpdesk: info@allstarpsychics.co.uk or call 0208 712 5690',
+    hasSms:              true,
     optOut:              'To opt out text DSTOP to 447860033717',
     hreflangs: [
       { hreflang: 'en-AU',    href: 'https://moonbar.com.au' },
@@ -103,6 +106,7 @@ export const REGION_CONFIG: Record<Region, RegionConfig> = {
     termsShort:          'Local rate call costs apply. Payments in NZD. Mobiles may be more. Over 18\'s. Entertainment Only. Must have bill payers permission.',
     termsLong:           'Local rate call costs apply - Payments in NZD. Mobiles may be more. Over 18\'s. Entertainment Only. Must have bill payers permission. Calls recorded. You will receive promo msgs, to opt out, send STOP to +61428808307.',
     sp:                  'SP: Allstar Psychics Ltd. Helpdesk: info@allstarpsychics.co.uk',
+    hasSms:              false,
     optOut:              'To opt out, send STOP to +61428808307',
     hreflangs: [
       { hreflang: 'en-AU',    href: 'https://moonbar.com.au' },
